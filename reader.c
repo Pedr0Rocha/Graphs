@@ -6,7 +6,8 @@
 int readVertexCount(char *path) {
 	FILE *fp;
 
-	int bytes, numVertex = 0;
+	int bytes = 0; 
+	int numVertex = 0;
 	
 	fp = fopen(path, "r");
 	if (fp != NULL){

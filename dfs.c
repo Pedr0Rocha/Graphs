@@ -15,11 +15,14 @@ void dfsVisit(Vertex *vertex) {
 	time++;
 	vertex->color = GRAY;
 	vertex->dt = time;
-	for (int i = 0; i < vertex->adjListSize-1; i++){
-		if (vertex->adjList[i].vertex->color == WHITE){
-			vertex->adjList[i].vertex->father = vertex;
-			dfsVisit(vertex->adjList[i].vertex);
+	AdjList *adj = vertex->adjList;
+	while (adj != NULL) {
+		Vertex *v = adj->vertex;
+		if (v->color == WHITE) {
+			v->father = vertex;
+			dfsVisit(v);
 		}
+		adj = adj->prev;
 	}
 	vertex->color = BLACK;
 	time++;

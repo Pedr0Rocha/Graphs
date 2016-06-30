@@ -10,18 +10,20 @@ Vertex* createVertex(char name) {
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
+		.adjList = NULL,
 		.adjListSize = 0
 	};
 	return v;
 }
 
 void initVertex(char name, Vertex *v) {
-	(*v) = (Vertex) {
+	*v = (Vertex) {
 		.name = name,
 		.father = NULL,
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
+		.adjList = NULL,
 		.adjListSize = 0
 	};
 }
@@ -39,8 +41,7 @@ void addToAdjList(Vertex *v, AdjList **adjList) {
 		(**adjList).vertex = v;
 		(**adjList).prev = NULL;
 	} else {
-		AdjList *new;
-		new = malloc(sizeof(AdjList));
+		AdjList *new = malloc(sizeof(AdjList));
 		new->vertex = v;
 		new->prev = *adjList;
 		*adjList = new;
