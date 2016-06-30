@@ -5,5 +5,6 @@
 
 void dfs(Vertex graph[], int numVertex);
 void dfsVisit(Vertex *vertex);
+void printTopologicalOrder(int numVertex);
 
 #endif

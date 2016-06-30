@@ -4,11 +4,17 @@
 #include "include/dfs.h"
 
 int time = 0;
+int topologicalIndex;
+char *topologicalOrder;
 
 void dfs(Vertex graph[], int numVertex) {
+	topologicalOrder = malloc(sizeof(char) * numVertex);
+	topologicalIndex = numVertex - 1;
+
 	for (int i = 0; i < numVertex; i++)
 		if (graph[i].color == WHITE)
 			dfsVisit(&graph[i]);
+	printTopologicalOrder(numVertex);
 }
 
 void dfsVisit(Vertex *vertex) {
@@ -25,8 +31,15 @@ void dfsVisit(Vertex *vertex) {
 		adj = adj->prev;
 	}
 	vertex->color = BLACK;
-	printf("Topological Order: %c\n", vertex->name);
+	topologicalOrder[topologicalIndex--] = vertex->name;
 	time++;
 	vertex->ft = time;
 }
 
+void printTopologicalOrder(int numVertex) {
+	for (int i = 0; i < numVertex; i++) {
+		if (i == 0) printf("Topological Order: %c", topologicalOrder[i]);
+		else printf(" -> %c", topologicalOrder[i]);
+	}
+	printf("\n");
+}
