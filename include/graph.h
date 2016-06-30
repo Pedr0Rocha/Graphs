@@ -30,5 +30,6 @@ void connectVertex(Vertex *v, Vertex *u);
 Vertex* createVertex(char name);
 void addToAdjList(Vertex *v, AdjList **adjList);
 int adjListContains(Vertex *v, AdjList *adjList);
+void printAdjList(Vertex *graph, int numVertex);
 
 #endif

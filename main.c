@@ -8,10 +8,10 @@
 #include "include/graph.h"
 #include "include/dfs.h"
 
-int numVertex = 6;
+int NUMVERTEX = 6;
 char *path = "tests/input1.txt";
 
-void manuallyCreateGraph(Vertex graph[]){
+void manuallyCreateGraph(Vertex graph[]) {
 	initVertex('A', &graph[0]);
 	initVertex('B', &graph[1]);
 	initVertex('C', &graph[2]);
@@ -26,26 +26,19 @@ void manuallyCreateGraph(Vertex graph[]){
 	connectVertex(&graph[3], &graph[2]);
 	connectVertex(&graph[4], &graph[5]);
 	connectVertex(&graph[0], &graph[4]);
-	for (int i = 0; i < numVertex; i++){
-		printf("%c Adj Size: %d\n", graph[i].name, graph[i].adjListSize);
-		AdjList *adj = graph[i].adjList;
-		while (adj != NULL){
-			printf("Adj -> %c\n", adj->vertex->name);
-			adj = adj->prev;
-		}
-	}
 	printf("Vertex Connected\n");
+	printAdjList(graph, NUMVERTEX);
 }
 
 int main(int argc, char **argv) {
-	//numVertex = readVertexCount(path);
+	//NUMVERTEX = readVertexCount(path);
 
-	Vertex graph[numVertex];
+	Vertex graph[NUMVERTEX];
 	manuallyCreateGraph(graph);
 	//createGraphFromInput(path, graph);
 
-	dfs(graph, numVertex);
-	for (int i = 0; i < numVertex; i++){
+	dfs(graph, NUMVERTEX);
+	for (int i = 0; i < NUMVERTEX; i++) {
 		printf("\nVertex %c\n", graph[i].name);
 		printf("Discovery Time %d\n", graph[i].dt);
 		printf("Final Time %d\n", graph[i].ft);

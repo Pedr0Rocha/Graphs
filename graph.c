@@ -36,7 +36,7 @@ void connectVertex(Vertex *v, Vertex *u) {
 }
 
 void addToAdjList(Vertex *v, AdjList **adjList) {
-	if (*adjList == NULL){
+	if (*adjList == NULL) {
 		*adjList = malloc(sizeof(AdjList));
 		(**adjList).vertex = v;
 		(**adjList).prev = NULL;
@@ -50,9 +50,20 @@ void addToAdjList(Vertex *v, AdjList **adjList) {
 
 int adjListContains(Vertex *v, AdjList *adjList) {
 	AdjList *current = adjList;
-	while (current != NULL){
+	while (current != NULL) {
 		if (current->vertex->name == v->name) return 1;
 		current = current->prev;
 	}
 	return 0;
+}
+
+void printAdjList(Vertex *graph, int numVertex) {
+	for (int i = 0; i < numVertex; i++) {
+		printf("%c Adj Size: %d\n", graph[i].name, graph[i].adjListSize);
+		AdjList *adj = graph[i].adjList;
+		while (adj != NULL) {
+			printf("Adj -> %c\n", adj->vertex->name);
+			adj = adj->prev;
+		}
+	}
 }
