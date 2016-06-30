@@ -25,6 +25,7 @@ void dfsVisit(Vertex *vertex) {
 		adj = adj->prev;
 	}
 	vertex->color = BLACK;
+	printf("Topological Order: %c\n", vertex->name);
 	time++;
 	vertex->ft = time;
 }

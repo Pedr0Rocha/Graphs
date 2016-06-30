@@ -9,25 +9,27 @@
 #include "include/dfs.h"
 
 int NUMVERTEX = 6;
+int NUMEDGES = 0;
 char *path = "tests/input1.txt";
 
 void manuallyCreateGraph(Vertex graph[]) {
-	initVertex('A', &graph[0]);
-	initVertex('B', &graph[1]);
-	initVertex('C', &graph[2]);
-	initVertex('D', &graph[3]);
-	initVertex('F', &graph[4]);
-	initVertex('G', &graph[5]);
+	initVertex('U', &graph[0]);
+	initVertex('V', &graph[1]);
+	initVertex('W', &graph[2]);
+	initVertex('X', &graph[3]);
+	initVertex('Y', &graph[4]);
+	initVertex('Z', &graph[5]);
 	printf("Vertex Initiated\n");
 
-	connectVertex(&graph[0], &graph[1]);
-	connectVertex(&graph[0], &graph[2]);
-	connectVertex(&graph[1], &graph[2]);
-	connectVertex(&graph[3], &graph[2]);
-	connectVertex(&graph[4], &graph[5]);
-	connectVertex(&graph[0], &graph[4]);
-	printf("Vertex Connected\n");
-	printAdjList(graph, NUMVERTEX);
+	addToAdjList(&graph[0], &graph[3]);
+	addToAdjList(&graph[0], &graph[1]);
+	addToAdjList(&graph[1], &graph[4]);
+	addToAdjList(&graph[2], &graph[5]);
+	addToAdjList(&graph[2], &graph[4]);
+	addToAdjList(&graph[3], &graph[1]);
+	addToAdjList(&graph[4], &graph[3]);
+	addToAdjList(&graph[5], &graph[5]);
+	printf("Vertex Connected\n\n");
 }
 
 int main(int argc, char **argv) {
@@ -39,9 +41,10 @@ int main(int argc, char **argv) {
 
 	dfs(graph, NUMVERTEX);
 	for (int i = 0; i < NUMVERTEX; i++) {
-		printf("\nVertex %c\n", graph[i].name);
-		printf("Discovery Time %d\n", graph[i].dt);
-		printf("Final Time %d\n", graph[i].ft);
+		if (i == 0) printf("\n");
+		printf("Vertex %c - ", graph[i].name);
+		printf("DT %d, ", graph[i].dt);
+		printf("FT %d\n", graph[i].ft);
 	}
 	return 0;
 }

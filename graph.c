@@ -28,14 +28,19 @@ void initVertex(char name, Vertex *v) {
 	};
 }
 
-void connectVertex(Vertex *v, Vertex *u) {
-	addToAdjList(v, &u->adjList);
-	addToAdjList(u, &v->adjList);
+void connectTwoVertex(Vertex *v, Vertex *u) {
+	insertAdjList(v, &u->adjList);
+	insertAdjList(u, &v->adjList);
 	v->adjListSize++;
 	u->adjListSize++;
 }
 
-void addToAdjList(Vertex *v, AdjList **adjList) {
+void addToAdjList(Vertex *v, Vertex *u) {
+	insertAdjList(u, &v->adjList);
+	v->adjListSize++;
+}
+
+void insertAdjList(Vertex *v, AdjList **adjList) {
 	if (*adjList == NULL) {
 		*adjList = malloc(sizeof(AdjList));
 		(**adjList).vertex = v;
