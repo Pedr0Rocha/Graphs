@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "include/graph.h"
 
 Vertex* createVertex(char name) {
@@ -10,6 +11,7 @@ Vertex* createVertex(char name) {
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
+		.distance = INT_MAX,
 		.adjList = NULL,
 		.adjListSize = 0
 	};
@@ -23,6 +25,7 @@ void initVertex(char name, Vertex *v) {
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
+		.distance = INT_MAX,
 		.adjList = NULL,
 		.adjListSize = 0
 	};

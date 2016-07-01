@@ -7,6 +7,7 @@
 #include "include/reader.h"
 #include "include/graph.h"
 #include "include/dfs.h"
+#include "include/bfs.h"
 
 int NUMVERTEX = 6;
 int NUMEDGES = 0;
@@ -39,12 +40,13 @@ int main(int argc, char **argv) {
 	manuallyCreateGraph(graph);
 	//createGraphFromInput(path, graph);
 
-	dfs(graph, NUMVERTEX);
-	for (int i = 0; i < NUMVERTEX; i++) {
-		if (i == 0) printf("\n");
-		printf("Vertex %c - ", graph[i].name);
-		printf("DT %d, ", graph[i].dt);
-		printf("FT %d\n", graph[i].ft);
-	}
+	//dfs(graph, NUMVERTEX);
+	//printf("\nDepth-first Search\n");
+	//printDfsResults(graph, NUMVERTEX);
+
+
+	printf("\nBreadth-first Search\n");
+	bfs(graph, &graph[0], NUMVERTEX);
+	printBfsResults(graph, NUMVERTEX);
 	return 0;
 }

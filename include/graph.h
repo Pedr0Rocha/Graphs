@@ -15,7 +15,8 @@ struct Vertex {
 	Vertex *father;
 	int color, 
 		dt, // discovery time 
-		ft; // final time
+		ft, // final time
+		distance;
 	AdjList *adjList;
 	int adjListSize;
 };
