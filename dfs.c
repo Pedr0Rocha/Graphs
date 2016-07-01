@@ -7,14 +7,14 @@ int time = 0;
 int topologicalIndex;
 char *topologicalOrder;
 
-void dfs(Vertex graph[], int numVertex) {
-	topologicalOrder = malloc(sizeof(char) * numVertex);
-	topologicalIndex = numVertex - 1;
+void dfs(Vertex graph[], int numVertices) {
+	topologicalOrder = malloc(sizeof(char) * numVertices);
+	topologicalIndex = numVertices - 1;
 
-	for (int i = 0; i < numVertex; i++)
+	for (int i = 0; i < numVertices; i++)
 		if (graph[i].color == WHITE)
 			dfsVisit(&graph[i]);
-	printTopologicalOrder(numVertex);
+	printTopologicalOrder(numVertices);
 }
 
 void dfsVisit(Vertex *vertex) {
@@ -36,16 +36,16 @@ void dfsVisit(Vertex *vertex) {
 	vertex->ft = time;
 }
 
-void printTopologicalOrder(int numVertex) {
-	for (int i = 0; i < numVertex; i++) {
+void printTopologicalOrder(int numVertices) {
+	for (int i = 0; i < numVertices; i++) {
 		if (i == 0) printf("Topological Order\n%c", topologicalOrder[i]);
 		else printf(" -> %c", topologicalOrder[i]);
 	}
 	printf("\n");
 }
 
-void printDfsResults(Vertex graph[], int numVertex) {
-	for (int i = 0; i < numVertex; i++) {
+void printDfsResults(Vertex graph[], int numVertices) {
+	for (int i = 0; i < numVertices; i++) {
 		if (i == 0) printf("\n");
 		printf("Vertex %c - ", graph[i].name);
 		printf("DT %d, ", graph[i].dt);

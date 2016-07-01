@@ -27,7 +27,7 @@ struct AdjList {
 };
 
 void initVertex(char name, Vertex *v);
-void connectTwoVertex(Vertex *v, Vertex *u);
+void connectVertices(Vertex *v, Vertex *u);
 void addToAdjList(Vertex *v, Vertex *u);
 void insertAdjList(Vertex *v, AdjList **adjList);
 Vertex* createVertex(char name);

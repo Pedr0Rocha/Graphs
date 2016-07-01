@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 
-void bfs(Vertex graph[], Vertex *initialVertex, int numVertex);
-Vertex* getNotVisited(Vertex graph[], int numVertex);
-int hasUnvisited(Vertex graph[], int numVertex);
-void printBfsResults(Vertex graph[], int numVertex);
+void bfs(Vertex graph[], Vertex *initialVertex, int numVertices);
+Vertex* getNotVisited(Vertex graph[], int numVertices);
+int hasUnvisited(Vertex graph[], int numVertices);
+void printBfsResults(Vertex graph[], int numVertices);
 
 #endif

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "graph.h"
 
-int readVertexCount(char *path);
-void createGraphFromInput(char *path, Vertex graph[]);
+void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges);
+void createGraphFromInput(char *path, Vertex graph[], int numVertices, int numEdges, int directed);
 
 #endif

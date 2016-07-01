@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 
-void dfs(Vertex graph[], int numVertex);
+void dfs(Vertex graph[], int numVertices);
 void dfsVisit(Vertex *vertex);
-void printTopologicalOrder(int numVertex);
-void printDfsResults(Vertex graph[], int numVertex);
+void printTopologicalOrder(int numVertices);
+void printDfsResults(Vertex graph[], int numVertices);
 
 #endif

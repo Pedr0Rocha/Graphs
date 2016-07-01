@@ -3,39 +3,47 @@
 #include "include/reader.h"
 #include "include/graph.h"
 
-int readVertexCount(char *path) {
+void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges) {
 	FILE *fp;
-
 	int bytes = 0; 
-	int numVertex = 0;
 	
 	fp = fopen(path, "r");
-	if (fp != NULL){
-		bytes = fscanf(fp, "%d", &numVertex);
+	if (fp != NULL) {
+		bytes = fscanf(fp, "%d %d", numVertices, numEdges);
 	} else {
 		printf("Error reading input file. Bytes = %d", bytes);
 		fclose(fp);
 		exit(1);
 	}	
-	return numVertex;
+	fclose(fp);
 }
 
-
-void createGraphFromInput(char *path, Vertex graph[]) {
+void createGraphFromInput(char *path, Vertex graph[], int numVertices, int numEdges, int directed) {
 	FILE *fp;
-	int graphCounter = 0;
-	char name;
+	char vertexName;
+	int unnecessaryInfo, // header info already known
+		vertexTarget,
+		vertexToConectTo;
+	int vertexIndex = 0;
 
 	fp = fopen(path, "r");
-	fscanf(fp, "%c", &name);
-	fscanf(fp, "%c", &name);
+	fscanf(fp, "%d %d", &unnecessaryInfo, &unnecessaryInfo);
 
-	while (graphCounter){
-		if (name == '|') continue;
-		printf("Vertex Name: %c\n", name);
-		initVertex(name, &graph[graphCounter++]);
-		if (graphCounter > 10) break;				
+	while (vertexIndex != numVertices) {
+		fscanf(fp, " %c", &vertexName);
+		initVertex(vertexName, &graph[vertexIndex++]);
 	}
 
+	while (numEdges-- >= 0) {
+		fscanf(fp, " %d %d", &vertexToConectTo, &vertexTarget);
+		if (directed)
+			addToAdjList(&graph[vertexToConectTo], &graph[vertexTarget]);
+		else
+			connectVertices(&graph[vertexToConectTo], &graph[vertexTarget]);
+	}
+	if (directed)
+		printf("\nDirected Graph Initiated\n");
+	else
+		printf("\nUndirected Graph Initiated\n");
 	fclose(fp);
 }

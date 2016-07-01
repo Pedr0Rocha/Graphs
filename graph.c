@@ -31,7 +31,7 @@ void initVertex(char name, Vertex *v) {
 	};
 }
 
-void connectTwoVertex(Vertex *v, Vertex *u) {
+void connectVertices(Vertex *v, Vertex *u) {
 	insertAdjList(v, &u->adjList);
 	insertAdjList(u, &v->adjList);
 	v->adjListSize++;

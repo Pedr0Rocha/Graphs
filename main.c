@@ -9,44 +9,23 @@
 #include "include/dfs.h"
 #include "include/bfs.h"
 
-int NUMVERTEX = 6;
-int NUMEDGES = 0;
+int isDirected = 1;
+int VERTICES_COUNT = 0;
+int EDGES_COUNT = 0;
 char *path = "tests/input1.txt";
 
-void manuallyCreateGraph(Vertex graph[]) {
-	initVertex('U', &graph[0]);
-	initVertex('V', &graph[1]);
-	initVertex('W', &graph[2]);
-	initVertex('X', &graph[3]);
-	initVertex('Y', &graph[4]);
-	initVertex('Z', &graph[5]);
-	printf("Vertex Initiated\n");
-
-	addToAdjList(&graph[0], &graph[3]);
-	addToAdjList(&graph[0], &graph[1]);
-	addToAdjList(&graph[1], &graph[4]);
-	addToAdjList(&graph[2], &graph[5]);
-	addToAdjList(&graph[2], &graph[4]);
-	addToAdjList(&graph[3], &graph[1]);
-	addToAdjList(&graph[4], &graph[3]);
-	addToAdjList(&graph[5], &graph[5]);
-	printf("Vertex Connected\n\n");
-}
-
 int main(int argc, char **argv) {
-	//NUMVERTEX = readVertexCount(path);
+	readVertexAndEdgeCount(path, &VERTICES_COUNT, &EDGES_COUNT);
 
-	Vertex graph[NUMVERTEX];
-	manuallyCreateGraph(graph);
-	//createGraphFromInput(path, graph);
-
-	//dfs(graph, NUMVERTEX);
+	Vertex graph[VERTICES_COUNT];
+	createGraphFromInput(path, graph, VERTICES_COUNT, EDGES_COUNT, isDirected);
+	//dfs(graph, VERTICES_COUNT);
 	//printf("\nDepth-first Search\n");
-	//printDfsResults(graph, NUMVERTEX);
+	//printDfsResults(graph, VERTICES_COUNT);
 
 
 	printf("\nBreadth-first Search\n");
-	bfs(graph, &graph[0], NUMVERTEX);
-	printBfsResults(graph, NUMVERTEX);
+	bfs(graph, &graph[0], VERTICES_COUNT);
+	printBfsResults(graph, VERTICES_COUNT);
 	return 0;
 }

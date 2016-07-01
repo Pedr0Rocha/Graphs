@@ -4,11 +4,11 @@
 #include "include/bfs.h"
 #include "include/queue.h"
 
-void bfs(Vertex graph[], Vertex *initialVertex, int numVertex) {
+void bfs(Vertex graph[], Vertex *initialVertex, int numVertices) {
 	initialVertex->distance = 0;
 	initialVertex->color = GRAY;
 
-	Queue *Q = createQueue(numVertex);
+	Queue *Q = createQueue(numVertices);
 	enqueue(initialVertex, Q);
 	while(!isEmpty(Q)) {
 		Vertex *u = dequeue(Q);
@@ -24,27 +24,29 @@ void bfs(Vertex graph[], Vertex *initialVertex, int numVertex) {
 			adj = adj->prev;
 		}
 		u->color = BLACK;
-		if (isEmpty(Q) && hasUnvisited(graph, numVertex)) {
-			Vertex *remaining = getNotVisited(graph, numVertex);
+		if (isEmpty(Q) && hasUnvisited(graph, numVertices)) {
+			Vertex *remaining = getNotVisited(graph, numVertices);
+			remaining->distance = 0;
+			remaining->color = GRAY;
 			enqueue(remaining, Q);
 		}
 	}
 }
 
-int hasUnvisited(Vertex graph[], int numVertex) {
-	for (int i = 0; i < numVertex; i++)
+int hasUnvisited(Vertex graph[], int numVertices) {
+	for (int i = 0; i < numVertices; i++)
 		if (graph[i].color == WHITE) return 1;
 	return 0;	
 }
 
-Vertex* getNotVisited(Vertex graph[], int numVertex) {
-	for (int i = 0; i < numVertex; i++)
+Vertex* getNotVisited(Vertex graph[], int numVertices) {
+	for (int i = 0; i < numVertices; i++)
 		if (graph[i].color == WHITE) return &graph[i];
 	return NULL;
 }
 
-void printBfsResults(Vertex graph[], int numVertex) {
-	for (int i = 0; i < numVertex; i++) {
+void printBfsResults(Vertex graph[], int numVertices) {
+	for (int i = 0; i < numVertices; i++) {
 		if (i == 0) printf("\n");
 		printf("Vertex %c - ", graph[i].name);
 		printf("Distance %d\n", graph[i].distance);
