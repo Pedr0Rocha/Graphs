@@ -11,7 +11,6 @@ void bfs(Vertex graph[], Vertex *initialVertex, int numVertex) {
 	Queue *Q = createQueue(numVertex);
 	enqueue(initialVertex, Q);
 	while(!isEmpty(Q)) {
-		printQueue(Q);
 		Vertex *u = dequeue(Q);
 		AdjList *adj = u->adjList;
 		while (adj != NULL) {
@@ -27,7 +26,6 @@ void bfs(Vertex graph[], Vertex *initialVertex, int numVertex) {
 		u->color = BLACK;
 		if (isEmpty(Q) && hasUnvisited(graph, numVertex)) {
 			Vertex *remaining = getNotVisited(graph, numVertex);
-			printf("Remaining %c\n", remaining->name);
 			enqueue(remaining, Q);
 		}
 	}
