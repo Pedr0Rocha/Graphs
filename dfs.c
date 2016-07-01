@@ -38,7 +38,7 @@ void dfsVisit(Vertex *vertex) {
 
 void printTopologicalOrder(int numVertices) {
 	for (int i = 0; i < numVertices; i++) {
-		if (i == 0) printf("Topological Order\n%c", topologicalOrder[i]);
+		if (i == 0) printf("\nTopological Order\n%c", topologicalOrder[i]);
 		else printf(" -> %c", topologicalOrder[i]);
 	}
 	printf("\n");
