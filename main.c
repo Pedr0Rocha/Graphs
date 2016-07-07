@@ -21,6 +21,7 @@ void printUsage(){
     printf("Usage: ./a.out <parameter> <value>\n\n");
     printf("  -a <algorithm>     choose the algorithm to run\n");
     printf("  -f <path>          path to input file\n\n");
+    printf("  -i <vertex>        initial vertex\n\n");
     printf("Algorithms:\n");
     printf("  dfs     Depth-first search\n");
     printf("  bfs     Breadth-first search\n\n");
@@ -30,7 +31,8 @@ void printUsage(){
 
 int main(int argc, char **argv) {
 	char c;
-    while ((c = getopt(argc, argv, "a:f:h")) != -1) {
+	int initialVertex;
+    while ((c = getopt(argc, argv, "a:f:i:h")) != -1) {
 	    switch (c){
 	        case 'a':
 	            algorithmToRun = optarg;
@@ -41,6 +43,9 @@ int main(int argc, char **argv) {
 	            break;
 	        case 'f':
 	            path = optarg;
+	            break;
+	        case 'i':
+	            initialVertex = atoi(optarg);
 	            break;
 	        case 'h':
 	            printUsage();
@@ -54,17 +59,15 @@ int main(int argc, char **argv) {
 	readVertexAndEdgeCount(path, &VERTICES_COUNT, &EDGES_COUNT, &isDirected);
 	Vertex graph[VERTICES_COUNT];
 	createGraphFromInput(path, graph, VERTICES_COUNT, EDGES_COUNT, isDirected);
+	printf("Initial Vertex = %d\n", initialVertex);
 
 	if (strcmp(algorithmToRun, "dfs") == 0) {
-
-		dfs(graph, &graph[0], VERTICES_COUNT);
+		dfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printf("\nDepth-first Search\n");
 		printDfsResults(graph, VERTICES_COUNT);
-
 	} else if (strcmp(algorithmToRun, "bfs") == 0) {
-
 		printf("\nBreadth-first Search\n");
-		bfs(graph, &graph[0], VERTICES_COUNT);
+		bfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printBfsResults(graph, VERTICES_COUNT);
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");

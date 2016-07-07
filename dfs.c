@@ -11,6 +11,7 @@ void dfs(Vertex graph[], Vertex *initialVertex, int numVertices) {
 	topologicalOrder = malloc(sizeof(char) * numVertices);
 	topologicalIndex = numVertices - 1;
 
+	dfsVisit(initialVertex);
 	for (int i = 0; i < numVertices; i++)
 		if (graph[i].color == WHITE)
 			dfsVisit(&graph[i]);

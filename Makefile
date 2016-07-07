@@ -3,4 +3,4 @@ ALL:
 clear:
 	rm a.out
 run:
-	./a.out -a bfs -f tests/input1.txt
+	./a.out -a dfs -i 0 -f tests/input1.txt
