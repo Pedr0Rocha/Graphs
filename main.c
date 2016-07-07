@@ -11,7 +11,7 @@
 #include "include/bfs.h"
 
 char *algorithmToRun = NULL;
-int isDirected = 1;
+int isDirected = 0;
 int VERTICES_COUNT = 0;
 int EDGES_COUNT = 0;
 char *path;
@@ -20,18 +20,17 @@ void printUsage(){
     printf("\nHelp\n\n");
     printf("Usage: ./a.out <parameter> <value>\n\n");
     printf("  -a <algorithm>     choose the algorithm to run\n");
-    printf("  -d <0, 1>          directed graph = 1, undirected = 0\n");
     printf("  -f <path>          path to input file\n\n");
     printf("Algorithms:\n");
     printf("  dfs     Depth-first search\n");
     printf("  bfs     Breadth-first search\n\n");
     printf("Example:\n");
-    printf("./a.out -a dfs -d 1 -f tests/input1.txt\n\n");
+    printf("./a.out -a dfs -f tests/input1.txt\n\n");
 }
 
 int main(int argc, char **argv) {
 	char c;
-    while ((c = getopt (argc, argv, "a:d:f:h")) != -1) {
+    while ((c = getopt(argc, argv, "a:f:h")) != -1) {
 	    switch (c){
 	        case 'a':
 	            algorithmToRun = optarg;
@@ -39,9 +38,6 @@ int main(int argc, char **argv) {
 	            	printUsage();
 	            	exit(1);
 	            }
-	            break;
-	        case 'd':
-	            isDirected = atoi(optarg);
 	            break;
 	        case 'f':
 	            path = optarg;
@@ -55,14 +51,13 @@ int main(int argc, char **argv) {
 	            abort();
 	    }
 	}
-
-	readVertexAndEdgeCount(path, &VERTICES_COUNT, &EDGES_COUNT);
+	readVertexAndEdgeCount(path, &VERTICES_COUNT, &EDGES_COUNT, &isDirected);
 	Vertex graph[VERTICES_COUNT];
 	createGraphFromInput(path, graph, VERTICES_COUNT, EDGES_COUNT, isDirected);
 
 	if (strcmp(algorithmToRun, "dfs") == 0) {
 
-		dfs(graph, VERTICES_COUNT);
+		dfs(graph, &graph[0], VERTICES_COUNT);
 		printf("\nDepth-first Search\n");
 		printDfsResults(graph, VERTICES_COUNT);
 
@@ -71,6 +66,8 @@ int main(int argc, char **argv) {
 		printf("\nBreadth-first Search\n");
 		bfs(graph, &graph[0], VERTICES_COUNT);
 		printBfsResults(graph, VERTICES_COUNT);
+	} else {
+		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}
 	return 0;
 }

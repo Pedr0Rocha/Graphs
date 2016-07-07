@@ -7,7 +7,7 @@ int time = 0;
 int topologicalIndex;
 char *topologicalOrder;
 
-void dfs(Vertex graph[], int numVertices) {
+void dfs(Vertex graph[], Vertex *initialVertex, int numVertices) {
 	topologicalOrder = malloc(sizeof(char) * numVertices);
 	topologicalIndex = numVertices - 1;
 
