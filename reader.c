@@ -7,7 +7,6 @@ void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges, int *is
 	FILE *fp;
 	int bytes = 0; 
 	
-	printf("Path = %s\n", path);
 	fp = fopen(path, "r");
 	if (fp != NULL) {
 		bytes = fscanf(fp, "%d %d %d", numVertices, numEdges, isDirected);
@@ -19,13 +18,14 @@ void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges, int *is
 	fclose(fp);
 }
 
-void createGraphFromInput(char *path, Vertex graph[], int numVertices, int numEdges, int directed) {
+void createGraphFromInput(char *path, Vertex graph[], Edge edges[], int numVertices, int numEdges, int directed) {
 	FILE *fp;
 	char vertexName;
 	int unnecessaryInfo, // header info already known
 		vertexTarget,
 		vertexToConectTo;
 	int vertexIndex = 0;
+	int edgeWeight = 0;
 
 	fp = fopen(path, "r");
 	fscanf(fp, "%d %d %d", &unnecessaryInfo, &unnecessaryInfo, &unnecessaryInfo);
@@ -35,12 +35,19 @@ void createGraphFromInput(char *path, Vertex graph[], int numVertices, int numEd
 		initVertex(vertexName, &graph[vertexIndex++]);
 	}
 
-	while (numEdges-- >= 0) {
-		fscanf(fp, " %d %d", &vertexToConectTo, &vertexTarget);
-		if (directed)
-			addToAdjList(&graph[vertexToConectTo], &graph[vertexTarget]);
-		else
-			connectVertices(&graph[vertexToConectTo], &graph[vertexTarget]);
+	while (numEdges-- > 0) {
+		fscanf(fp, " %d %d %d", &vertexToConectTo, &vertexTarget, &edgeWeight);
+		if (directed) {
+			addToAdjList(&graph[vertexToConectTo], &graph[vertexTarget], edgeWeight);
+			edges[numEdges].u = vertexToConectTo;
+			edges[numEdges].v = vertexTarget;
+			edges[numEdges].weight = edgeWeight;
+		} else {
+			connectVertices(&graph[vertexToConectTo], &graph[vertexTarget], edgeWeight);
+			edges[numEdges].u = vertexToConectTo;
+			edges[numEdges].v = vertexTarget;
+			edges[numEdges].weight = edgeWeight;
+		}
 	}
 	if (directed)
 		printf("\nDirected Graph Initiated\n");

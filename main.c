@@ -9,6 +9,7 @@
 #include "include/graph.h"
 #include "include/dfs.h"
 #include "include/bfs.h"
+#include "include/bellmanford.h"
 
 char *algorithmToRun = NULL;
 int isDirected = 0;
@@ -32,7 +33,8 @@ void printUsage(){
 int main(int argc, char **argv) {
 	char c;
 	int initialVertex;
-    while ((c = getopt(argc, argv, "a:f:i:h")) != -1) {
+	int goalVertex;
+    while ((c = getopt(argc, argv, "a:f:i:g:h")) != -1) {
 	    switch (c){
 	        case 'a':
 	            algorithmToRun = optarg;
@@ -47,6 +49,9 @@ int main(int argc, char **argv) {
 	        case 'i':
 	            initialVertex = atoi(optarg);
 	            break;
+	        case 'g':
+	            goalVertex = atoi(optarg);
+	            break;
 	        case 'h':
 	            printUsage();
 	            exit(0);
@@ -58,7 +63,8 @@ int main(int argc, char **argv) {
 	}
 	readVertexAndEdgeCount(path, &VERTICES_COUNT, &EDGES_COUNT, &isDirected);
 	Vertex graph[VERTICES_COUNT];
-	createGraphFromInput(path, graph, VERTICES_COUNT, EDGES_COUNT, isDirected);
+	Edge edges[EDGES_COUNT];
+	createGraphFromInput(path, graph, edges, VERTICES_COUNT, EDGES_COUNT, isDirected);
 	printf("Initial Vertex = %d\n", initialVertex);
 
 	if (strcmp(algorithmToRun, "dfs") == 0) {
@@ -69,6 +75,11 @@ int main(int argc, char **argv) {
 		printf("\nBreadth-first Search\n");
 		bfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printBfsResults(graph, VERTICES_COUNT);
+	} else if (strcmp(algorithmToRun, "bellman") == 0) {
+		printf("\nBellman-Ford\n");
+		bellmanFord(graph, edges, &graph[initialVertex], &graph[goalVertex], VERTICES_COUNT, EDGES_COUNT);
+		printBellmanFordResults(graph, goalVertex, VERTICES_COUNT);
+
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}

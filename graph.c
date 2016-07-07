@@ -31,26 +31,28 @@ void initVertex(char name, Vertex *v) {
 	};
 }
 
-void connectVertices(Vertex *v, Vertex *u) {
-	insertAdjList(v, &u->adjList);
-	insertAdjList(u, &v->adjList);
+void connectVertices(Vertex *v, Vertex *u, int weight) {
+	insertAdjList(v, &u->adjList, weight);
+	insertAdjList(u, &v->adjList, weight);
 	v->adjListSize++;
 	u->adjListSize++;
 }
 
-void addToAdjList(Vertex *v, Vertex *u) {
-	insertAdjList(u, &v->adjList);
+void addToAdjList(Vertex *v, Vertex *u, int weight) {
+	insertAdjList(u, &v->adjList, weight);
 	v->adjListSize++;
 }
 
-void insertAdjList(Vertex *v, AdjList **adjList) {
+void insertAdjList(Vertex *v, AdjList **adjList, int weight) {
 	if (*adjList == NULL) {
 		*adjList = malloc(sizeof(AdjList));
 		(**adjList).vertex = v;
+		(**adjList).weight = weight;
 		(**adjList).prev = NULL;
 	} else {
 		AdjList *new = malloc(sizeof(AdjList));
 		new->vertex = v;
+		new->weight = weight;
 		new->prev = *adjList;
 		*adjList = new;
 	}

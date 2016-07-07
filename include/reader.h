@@ -5,6 +5,6 @@
 #include "graph.h"
 
 void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges, int *isDirected);
-void createGraphFromInput(char *path, Vertex graph[], int numVertices, int numEdges, int directed);
+void createGraphFromInput(char *path, Vertex graph[], Edge edges[], int numVertices, int numEdges, int directed);
 
 #endif

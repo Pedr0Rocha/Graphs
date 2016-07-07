@@ -24,12 +24,19 @@ struct Vertex {
 struct AdjList {
 	Vertex *vertex;
 	AdjList *prev;
+	int weight;
 };
 
+typedef struct {
+	int u;
+	int v;
+	int weight;
+} Edge;
+
 void initVertex(char name, Vertex *v);
-void connectVertices(Vertex *v, Vertex *u);
-void addToAdjList(Vertex *v, Vertex *u);
-void insertAdjList(Vertex *v, AdjList **adjList);
+void connectVertices(Vertex *v, Vertex *u, int weight);
+void addToAdjList(Vertex *v, Vertex *u, int weight);
+void insertAdjList(Vertex *v, AdjList **adjList, int weight);
 Vertex* createVertex(char name);
 int adjListContains(Vertex *v, AdjList *adjList);
 void printAdjList(Vertex *graph, int numVertex);
