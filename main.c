@@ -10,6 +10,7 @@
 #include "include/dfs.h"
 #include "include/bfs.h"
 #include "include/bellmanford.h"
+#include "include/scc.h"
 
 char *algorithmToRun = NULL;
 int isDirected = 0;
@@ -80,6 +81,9 @@ int main(int argc, char **argv) {
 		printf("Goal Vertex - %c\n", graph[goalVertex].name);
 		bellmanFord(graph, edges, initialVertex, VERTICES_COUNT, EDGES_COUNT);
 		printBellmanFordResults(graph, VERTICES_COUNT, goalVertex);
+	} else if (strcmp(algorithmToRun, "scc") == 0) {
+		printf("\nStrongly-Connected-Components\n");
+		scc(graph, initialVertex, VERTICES_COUNT);
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}

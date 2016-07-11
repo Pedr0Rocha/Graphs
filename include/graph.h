@@ -37,8 +37,12 @@ void initVertex(char name, Vertex *v);
 void connectVertices(Vertex *v, Vertex *u, int weight);
 void addToAdjList(Vertex *v, Vertex *u, int weight);
 void insertAdjList(Vertex *v, AdjList **adjList, int weight);
+void removeFromAdjList(char vertexName, AdjList **adjList, char adjListOwner);
 Vertex* createVertex(char name);
 int adjListContains(Vertex *v, AdjList *adjList);
-void printAdjList(Vertex *graph, int numVertex);
+void transposeGraph(Vertex graph[], int numVertices);
+void sortByFinalTime(Vertex graph[], int numVertices);
+void quickSort(Vertex graph[], int left, int right);
+void printAdjList(Vertex *graph, int numVertices);
 
 #endif

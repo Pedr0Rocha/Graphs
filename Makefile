@@ -3,4 +3,4 @@ ALL:
 clear:
 	rm a.out
 run:
-	./a.out -a bellman -i 0 -g 4 -f tests/input1.txt
+	./a.out -a scc -i 0 -g 4 -f tests/input1.txt
