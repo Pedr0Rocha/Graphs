@@ -3,7 +3,7 @@
 #include "include/graph.h"
 #include "include/bellmanford.h"
 
-int bellmanFord(Vertex graph[], Edge edges[], int origin, Vertex *goal, int numVertices, int numEdges) {
+int bellmanFord(Vertex graph[], Edge edges[], int origin, int numVertices, int numEdges) {
 	graph[origin].distance = 0;	
 
 	for (int i = 0; i < numVertices - 1; i++) {
@@ -27,13 +27,15 @@ void relax(Vertex *u, Vertex *v, int weight) {
 	}
 }
 
-void printBellmanFordResults(Vertex graph[], int numVertices) {
-	for (int i = 0; i < numVertices; i++) {
-		printf("Vertex %c - Distance = %d - ", graph[i].name, graph[i].distance);
-		if (graph[i].father != NULL)
-			printf("Father %c \n", graph[i].father->name);
-		else 
-			printf("No Father\n");
+void printBellmanFordResults(Vertex graph[], int numVertices, int goalVertex) {
+	Vertex *current = &graph[goalVertex];
+	while (current) {
+		printf("Vertex %c - Distance = %d - ", current->name, current->distance);
+		if (current->father != NULL)
+			printf("Father %c \n", current->father->name);
+		else
+			printf("Father NULL\n");
+		current = current->father;
 	}
 }
 

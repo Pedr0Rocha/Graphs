@@ -76,9 +76,10 @@ int main(int argc, char **argv) {
 		bfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printBfsResults(graph, VERTICES_COUNT);
 	} else if (strcmp(algorithmToRun, "bellman") == 0) {
-		printf("\nBellman-Ford\n");
-		bellmanFord(graph, edges, initialVertex, &graph[goalVertex], VERTICES_COUNT, EDGES_COUNT);
-		printBellmanFordResults(graph, VERTICES_COUNT);
+		printf("\nBellman-Ford - ");
+		printf("Goal Vertex - %c\n", graph[goalVertex].name);
+		bellmanFord(graph, edges, initialVertex, VERTICES_COUNT, EDGES_COUNT);
+		printBellmanFordResults(graph, VERTICES_COUNT, goalVertex);
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}
