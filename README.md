@@ -15,7 +15,7 @@ $ ./graphs <parâmetros>
 ```
 ### 2. Parâmetros
 O algoritmo possui quatro parâmetros
- - -a <algoritmo>
+- -a <algoritmo>
    * Algoritmo a ser executado
 - -f <arquivo>
    * Caminho para arquivo de teste
