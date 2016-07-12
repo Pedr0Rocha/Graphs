@@ -20,15 +20,18 @@ char *path;
 
 void printUsage(){
     printf("\nHelp\n\n");
-    printf("Usage: ./a.out <parameter> <value>\n\n");
+    printf("Usage: ./graphs <parameter> <value>\n\n");
     printf("  -a <algorithm>     choose the algorithm to run\n");
-    printf("  -f <path>          path to input file\n\n");
-    printf("  -i <vertex>        initial vertex\n\n");
+    printf("  -f <path>          path to input file\n");
+    printf("  -i <vertex>        initial vertex\n");
+    printf("  -g <vertex>        goal vertex\n\n");
     printf("Algorithms:\n");
-    printf("  dfs     Depth-first search\n");
-    printf("  bfs     Breadth-first search\n\n");
+    printf("  dfs     Depth-first Search\n");
+    printf("  bfs     Breadth-first Search\n");
+    printf("  bellman BellmanFord - Shortest Path\n");
+    printf("  scc     Strongly-Connected-Components\n\n");
     printf("Example:\n");
-    printf("./a.out -a dfs -f tests/input1.txt\n\n");
+    printf("./graphs -a bellman -i 0 -g 4 -f tests/input.txt\n\n");
 }
 
 int main(int argc, char **argv) {

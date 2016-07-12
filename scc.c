@@ -11,8 +11,7 @@ void dfsScc(Vertex graphT[], Vertex *initialVertex, int numVertices) {
   dfsVisitScc(initialVertex);
   for (int i = 0; i < numVertices; i++)
     if (graphT[i].color == WHITE) {
-      printf("\n");
-      printf("Component %d\n", componentIndex++);
+      printf("\nComponent %d\n", componentIndex++);
       printf("%c", graphT[i].name);
       dfsVisitScc(&graphT[i]);
     }
