@@ -78,16 +78,27 @@ int findIndexByName(Vertex graph[], char name, int numVertices) {
 	return -1;
 }
 
+int compare (const void * a, const void * b) {
+  Vertex *u = (Vertex *)a;
+  Vertex *v = (Vertex *)b;
+  if (u->ft > v->ft) return -1;
+  else if (u-> ft < v->ft) return 1;
+  else return 0;
+}
+
 void transposeGraph(Vertex graph[], Vertex graphT[], int numVertices) {
-	for (int i = 0; i < numVertices; i++) 
+	for (int i = 0; i < numVertices; i++) {
 		initVertex(graph[i].name, &graphT[i]);
-	
+		graphT[i].ft = graph[i].ft;
+	}
+	qsort(graphT, numVertices, sizeof(Vertex), compare);
 	for (int i = 0; i < numVertices; i++) {
 		AdjList *adj = graph[i].adjList;
 		while (adj != NULL) {
 			Vertex *v = adj->vertex;
 			int graphIndex = findIndexByName(graphT, v->name, numVertices);
-			addToAdjList(&graphT[graphIndex], &graph[i], 0);
+			int graphIndexToAdd = findIndexByName(graphT, graph[i].name, numVertices);
+			addToAdjList(&graphT[graphIndex], &graphT[graphIndexToAdd], 1);
 			adj = adj->prev;
 		}
 	}
@@ -99,7 +110,6 @@ void printAdjList(Vertex *graph, int numVertices) {
 		AdjList *adj = graph[i].adjList;
 		while (adj != NULL) {
 			printf("Adj -> %c\n", adj->vertex->name);
-			printf("Ft -> %d\n", adj->vertex->ft);
 			adj = adj->prev;
 		}
 	}

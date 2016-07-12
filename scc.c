@@ -4,21 +4,40 @@
 #include "include/scc.h"
 #include "include/dfs.h"
 
-int compare (const void * a, const void * b) {
-  Vertex *u = (Vertex *)a;
-  Vertex *v = (Vertex *)b;
-
-  printf("u = %d , v = %d\n", u->ft, v->ft);
-  if (u->ft < v->ft) return -1;
-  else if (u-> ft > v->ft) return 1;
-  else return 0;
+void dfsScc(Vertex graphT[], Vertex *initialVertex, int numVertices) {
+  int componentIndex = 1;
+  printf("\nList of Components\n\nComponent %d\n", componentIndex++);
+  printf("%c ", initialVertex->name);
+  dfsVisitScc(initialVertex);
+  for (int i = 0; i < numVertices; i++)
+    if (graphT[i].color == WHITE) {
+      printf("\n");
+      printf("Component %d\n", componentIndex++);
+      printf("%c", graphT[i].name);
+      dfsVisitScc(&graphT[i]);
+    }
+  printf("\n");
 }
+
+void dfsVisitScc(Vertex *vertex) {
+  vertex->color = GRAY;
+  AdjList *adj = vertex->adjList;
+  while (adj != NULL) {
+    Vertex *v = adj->vertex;
+    if (v->color == WHITE) {
+      printf(" %c", v->name);
+      dfsVisitScc(v);
+    }
+    adj = adj->prev;
+  }
+  vertex->color = BLACK;
+}
+
 
 void scc(Vertex graph[], int origin, int numVertices) {
 	dfs(graph, &graph[origin], numVertices);
 	Vertex graphT[numVertices];
 	transposeGraph(graph, graphT, numVertices);
-	qsort(graphT, numVertices, sizeof(Vertex), compare);
 	dfsScc(graphT, &graphT[0], numVertices);
 }
 
