@@ -37,6 +37,36 @@ void dfsVisit(Vertex *vertex) {
 	vertex->ft = time;
 }
 
+void dfsScc(Vertex graph[], Vertex *initialVertex, int numVertices) {
+	int componentIndex = 1;
+	printf("Component %d\n", componentIndex++);
+	dfsVisitScc(initialVertex);
+	for (int i = 0; i < numVertices; i++)
+		if (graph[i].color == WHITE) {
+			printf("\n");
+			printf("Component %d\n", componentIndex++);
+			dfsVisitScc(&graph[i]);
+		}
+	printf("\n");
+}
+
+void dfsVisitScc(Vertex *vertex) {
+	printf("%c ", vertex->name);
+	vertex->color = GRAY;
+	AdjList *adj = vertex->adjList;
+	while (adj != NULL) {
+		Vertex *v = adj->vertex;
+		printf("%c ", v->name);
+		if (v->color == WHITE) {
+			v->father = vertex;
+			dfsVisitScc(v);
+		}
+		adj = adj->prev;
+	}
+	vertex->color = BLACK;
+}
+
+
 void printTopologicalOrder(int numVertices) {
 	for (int i = 0; i < numVertices; i++) {
 		if (i == 0) printf("\nTopological Order\n%c", topologicalOrder[i]);

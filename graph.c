@@ -60,6 +60,7 @@ void insertAdjList(Vertex *v, AdjList **adjList, int weight) {
 
 void removeFromAdjList(char vertexName, AdjList **adjList, char adjListOwner) {
 	printf("Vertex %c removed from %c adjList\n", vertexName, adjListOwner);
+	
 }
 
 int adjListContains(Vertex *v, AdjList *adjList) {
@@ -71,27 +72,25 @@ int adjListContains(Vertex *v, AdjList *adjList) {
 	return 0;
 }
 
-void transposeGraph(Vertex graph[], int numVertices) {
-	printAdjList(graph, numVertices);
+int findIndexByName(Vertex graph[], char name, int numVertices) {
+	for (int i = 0; i < numVertices; i++)
+		if (graph[i].name == name) return i;
+	return -1;
+}
+
+void transposeGraph(Vertex graph[], Vertex graphT[], int numVertices) {
+	for (int i = 0; i < numVertices; i++) 
+		initVertex(graph[i].name, &graphT[i]);
+	
 	for (int i = 0; i < numVertices; i++) {
 		AdjList *adj = graph[i].adjList;
 		while (adj != NULL) {
 			Vertex *v = adj->vertex;
-			// add graph[i] to v->adjList and remove v from graph[i].adjList
-			removeFromAdjList(v->name, &graph[i].adjList, graph[i].name);
-			addToAdjList(&graph[i], v, 0);
+			int graphIndex = findIndexByName(graphT, v->name, numVertices);
+			addToAdjList(&graphT[graphIndex], &graph[i], 0);
 			adj = adj->prev;
 		}
-	}	
-}
-
-void sortByFinalTime(Vertex graph[], int numVertices) {
-	quickSort(graph, 0, numVertices-1);
-}
-
-void quickSort(Vertex graph[], int left, int right) {
-	int pivot = left;
-	printf("pivot = %d\n", pivot);
+	}
 }
 
 void printAdjList(Vertex *graph, int numVertices) {
@@ -100,6 +99,7 @@ void printAdjList(Vertex *graph, int numVertices) {
 		AdjList *adj = graph[i].adjList;
 		while (adj != NULL) {
 			printf("Adj -> %c\n", adj->vertex->name);
+			printf("Ft -> %d\n", adj->vertex->ft);
 			adj = adj->prev;
 		}
 	}

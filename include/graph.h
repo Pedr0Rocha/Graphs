@@ -40,9 +40,7 @@ void insertAdjList(Vertex *v, AdjList **adjList, int weight);
 void removeFromAdjList(char vertexName, AdjList **adjList, char adjListOwner);
 Vertex* createVertex(char name);
 int adjListContains(Vertex *v, AdjList *adjList);
-void transposeGraph(Vertex graph[], int numVertices);
-void sortByFinalTime(Vertex graph[], int numVertices);
-void quickSort(Vertex graph[], int left, int right);
+void transposeGraph(Vertex graph[], Vertex graphT[], int numVertices);
 void printAdjList(Vertex *graph, int numVertices);
 
 #endif
