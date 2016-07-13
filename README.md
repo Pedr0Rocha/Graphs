@@ -38,6 +38,8 @@ Algoritmos implementados:
 | BellmanFord  | bellman | Retorna o caminho mínimo com pesos entre o vértice inicial e final, também acha ciclos negativos |
 | Componentes Fortemente Conectados  | scc | Retorna todos os componentes fortemente conectados do grafo |
 
+Todos os algoritmos foram implementados usando lista de adjacências.
+
 ##### 2.2 Exemplos de Uso
 Executar o Dfs no teste 'input.txt' com vértice inicial 0
 ```
@@ -59,3 +61,16 @@ Executar o Scc no teste 'input.txt' com vértice inicial 0
 $ ./graphs -a scc -i 0 -f input.txt
 ```
 
+### 3. Entradas
+Os arquivos de input seguem o modelo a seguir
+```
+5               # numero de vértices
+6               # número de arestas
+1               # 1 - grafo direcionado, 0 - não direcionado
+A B C D E       # nomes dos vértices
+0 1 1           # aresta entre vértice 0(A) e 1(B) com peso 1
+0 3 2
+2 1 5
+1 4 2
+3 0 8
+```

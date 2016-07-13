@@ -6,11 +6,10 @@
 int bellmanFord(Vertex graph[], Edge edges[], int origin, int numVertices, int numEdges) {
 	graph[origin].distance = 0;	
 
-	for (int i = 0; i < numVertices - 1; i++) {
-		for (int j = numEdges - 1; j > 0; j--) {
+	for (int i = 0; i < numVertices - 1; i++)
+		for (int j = numEdges - 1; j > 0; j--)
 			relax(&graph[edges[j].u], &graph[edges[j].v], edges[j].weight);
-		}
-	}
+		
 	for (int j = 0; j < numEdges; j++)
 		if (graph[edges[j].v].distance > graph[edges[j].u].distance + edges[j].weight) {
 			printf("Negative Cycle Found!\n");

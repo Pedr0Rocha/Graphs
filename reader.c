@@ -28,6 +28,7 @@ void createGraphFromInput(char *path, Vertex graph[], Edge edges[], int numVerti
 	int edgeWeight = 0;
 
 	fp = fopen(path, "r");
+	// ignoring info already stored
 	fscanf(fp, "%d %d %d", &unnecessaryInfo, &unnecessaryInfo, &unnecessaryInfo);
 
 	while (vertexIndex != numVertices) {
