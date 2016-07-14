@@ -64,11 +64,6 @@ void insertAdjList(Vertex *v, AdjList **adjList, int weight) {
 	}
 }
 
-void removeFromAdjList(char vertexName, AdjList **adjList, char adjListOwner) {
-	printf("Vertex %c removed from %c adjList\n", vertexName, adjListOwner);
-	
-}
-
 int adjListContains(Vertex *v, AdjList *adjList) {
 	AdjList *current = adjList;
 	while (current != NULL) {
