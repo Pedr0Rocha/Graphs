@@ -36,6 +36,7 @@ typedef struct {
 void initVertex(char name, Vertex *v);
 void connectVertices(Vertex *v, Vertex *u, int weight);
 void addToAdjList(Vertex *v, Vertex *u, int weight);
+void addToEdgeArray(Edge edges[], int addAtIndex, int vIndex, int uIndex, int weight);
 void insertAdjList(Vertex *v, AdjList **adjList, int weight);
 void removeFromAdjList(char vertexName, AdjList **adjList, char adjListOwner);
 Vertex* createVertex(char name);

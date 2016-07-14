@@ -8,11 +8,10 @@ void readVertexAndEdgeCount(char *path, int *numVertices, int *numEdges, int *is
 	int bytes = 0; 
 	
 	fp = fopen(path, "r");
-	if (fp != NULL) {
+	if (fp) 
 		bytes = fscanf(fp, "%d %d %d", numVertices, numEdges, isDirected);
-	} else {
-		printf("Error reading input file. Bytes = %d", bytes);
-		fclose(fp);
+	else {
+		printf("Error reading input file, bytes read = %d\n", bytes);
 		exit(1);
 	}	
 	fclose(fp);
@@ -38,18 +37,13 @@ void createGraphFromInput(char *path, Vertex graph[], Edge edges[], int numVerti
 
 	while (numEdges-- > 0) {
 		fscanf(fp, " %d %d %d", &vertexToConectTo, &vertexTarget, &edgeWeight);
-		if (directed) {
+		if (directed)
 			addToAdjList(&graph[vertexToConectTo], &graph[vertexTarget], edgeWeight);
-			edges[numEdges].u = vertexToConectTo;
-			edges[numEdges].v = vertexTarget;
-			edges[numEdges].weight = edgeWeight;
-		} else {
+		else
 			connectVertices(&graph[vertexToConectTo], &graph[vertexTarget], edgeWeight);
-			edges[numEdges].u = vertexToConectTo;
-			edges[numEdges].v = vertexTarget;
-			edges[numEdges].weight = edgeWeight;
-		}
+		addToEdgeArray(edges, numEdges, vertexTarget, vertexToConectTo, edgeWeight);
 	}
+	
 	if (directed)
 		printf("\nDirected Graph Initiated\n");
 	else

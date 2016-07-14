@@ -75,19 +75,25 @@ int main(int argc, char **argv) {
 		dfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printf("\nDepth-first Search\n");
 		printDfsResults(graph, VERTICES_COUNT);
+
 	} else if (strcmp(algorithmToRun, "bfs") == 0) {
 		printf("\nBreadth-first Search\n");
 		bfs(graph, &graph[initialVertex], VERTICES_COUNT);
 		printBfsResults(graph, VERTICES_COUNT);
+
 	} else if (strcmp(algorithmToRun, "bellman") == 0) {
 		printf("\nBellman-Ford - ");
 		printf("Goal Vertex - %c\n", graph[goalVertex].name);
 		int noNegativeCycle = bellmanFord(graph, edges, initialVertex, VERTICES_COUNT, EDGES_COUNT);
 		if (noNegativeCycle)
 			printBellmanFordResults(graph, VERTICES_COUNT, goalVertex);
+		else
+			printf("Negative Cycle Found!\n");
+
 	} else if (strcmp(algorithmToRun, "scc") == 0) {
 		printf("\nStrongly-Connected-Components\n");
 		scc(graph, initialVertex, VERTICES_COUNT);
+		
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}

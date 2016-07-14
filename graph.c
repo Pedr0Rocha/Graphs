@@ -11,7 +11,7 @@ Vertex* createVertex(char name) {
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
-		.distance = INT_MAX,
+		.distance = INT_MAX-9999,
 		.adjList = NULL,
 		.adjListSize = 0
 	};
@@ -25,7 +25,7 @@ void initVertex(char name, Vertex *v) {
 		.color = WHITE,
 		.dt = -1,
 		.ft = -1,
-		.distance = INT_MAX,
+		.distance = INT_MAX-9999,
 		.adjList = NULL,
 		.adjListSize = 0
 	};
@@ -41,6 +41,12 @@ void connectVertices(Vertex *v, Vertex *u, int weight) {
 void addToAdjList(Vertex *v, Vertex *u, int weight) {
 	insertAdjList(u, &v->adjList, weight);
 	v->adjListSize++;
+}
+
+void addToEdgeArray(Edge edges[], int addAtIndex, int vIndex, int uIndex, int weight) {
+	edges[addAtIndex].v = vIndex;
+	edges[addAtIndex].u = uIndex;
+	edges[addAtIndex].weight = weight;
 }
 
 void insertAdjList(Vertex *v, AdjList **adjList, int weight) {
