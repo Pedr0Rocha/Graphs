@@ -43,22 +43,22 @@ Todos os algoritmos foram implementados usando lista de adjacências.
 ##### 2.2 Exemplos de Uso
 Executar o Dfs no teste 'input.txt' com vértice inicial 0
 ```
-$ ./graphs -a dfs -i 0 -f input.txt
+$ ./graphs -a dfs -i 0 -f tests/input.txt
 ```
 
 Executar o Bfs no teste 'input.txt' com vértice inicial 1
 ```
-$ ./graphs -a bfs -i 1 -f input.txt
+$ ./graphs -a bfs -i 1 -f tests/input.txt
 ```
 
 Executar o BellmanFord no teste 'input.txt' com vértice inicial 0 e vértice final 4
 ```
-$ ./graphs -a bellman -i 0 -g 4 -f input.txt
+$ ./graphs -a bellman -i 0 -g 4 -f tests/input.txt
 ```
 
 Executar o Scc no teste 'input.txt' com vértice inicial 0
 ```
-$ ./graphs -a scc -i 0 -f input.txt
+$ ./graphs -a scc -i 0 -f tests/input.txt
 ```
 
 ### 3. Entradas

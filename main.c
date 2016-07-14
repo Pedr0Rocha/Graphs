@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
 	Vertex graph[VERTICES_COUNT];
 	Edge edges[EDGES_COUNT];
 	createGraphFromInput(path, graph, edges, VERTICES_COUNT, EDGES_COUNT, isDirected);
-	printf("Initial Vertex = %d\n", initialVertex);
+	printf("Initial Vertex = %c\n", graph[initialVertex].name);
 
 	if (strcmp(algorithmToRun, "dfs") == 0) {
 		dfs(graph, &graph[initialVertex], VERTICES_COUNT);
@@ -82,8 +82,9 @@ int main(int argc, char **argv) {
 	} else if (strcmp(algorithmToRun, "bellman") == 0) {
 		printf("\nBellman-Ford - ");
 		printf("Goal Vertex - %c\n", graph[goalVertex].name);
-		bellmanFord(graph, edges, initialVertex, VERTICES_COUNT, EDGES_COUNT);
-		printBellmanFordResults(graph, VERTICES_COUNT, goalVertex);
+		int noNegativeCycle = bellmanFord(graph, edges, initialVertex, VERTICES_COUNT, EDGES_COUNT);
+		if (noNegativeCycle)
+			printBellmanFordResults(graph, VERTICES_COUNT, goalVertex);
 	} else if (strcmp(algorithmToRun, "scc") == 0) {
 		printf("\nStrongly-Connected-Components\n");
 		scc(graph, initialVertex, VERTICES_COUNT);
