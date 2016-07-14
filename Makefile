@@ -3,4 +3,4 @@ ALL:
 clear:
 	rm a.out
 run:
-	./graphs -a scc -i 0 -g 4 -f tests/input1.txt
+	./graphs -a scc -i 0 -g 4 -f tests/input.txt

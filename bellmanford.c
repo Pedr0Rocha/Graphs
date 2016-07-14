@@ -28,13 +28,16 @@ void relax(Vertex *u, Vertex *v, int weight) {
 
 void printBellmanFordResults(Vertex graph[], int numVertices, int goalVertex) {
 	Vertex *current = &graph[goalVertex];
+	int totalDistance = 0;
 	while (current) {
 		printf("Vertex %c - Distance = %d - ", current->name, current->distance);
+		totalDistance += current->distance;
 		if (current->father != NULL)
 			printf("Father %c \n", current->father->name);
 		else
 			printf("Father NULL\n");
 		current = current->father;
 	}
+	printf("Total Distance = %d\n", totalDistance);
 }
 
