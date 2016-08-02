@@ -44,6 +44,6 @@ Queue* createQueue(int maxSize) {
 }
 
 void printQueue(Queue *queue) {
-	for (int i = 0; i < queue->maxSize; i++)
+	for (int i = 0; i < queue->size; i++)
 		printf("%c -> ", queue->vertexQueue[i]->name);
 }
