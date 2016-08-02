@@ -3,4 +3,4 @@ ALL:
 clear:
 	rm mst
 run:
-	./mst -a prim -i 0 -g 4 -f tests/input.txt
+	./mst -a prim -i 0 -f tests/input.txt

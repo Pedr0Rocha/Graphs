@@ -7,7 +7,7 @@ Algoritmos implementados:
 | PASTAS | ALGORITMOS | 
 | -----: | :--------: |
 | Projeto1  | Dfs, Bfs, Scc, BellmanFord | 
-| Projeto2  | Mst - Prim, Melhor Vizinho | 
+| Projeto2  | Prim, MST Heurístico | 
 
 Todos os algoritmos foram implementados em C e usando lista de adjacências.
 

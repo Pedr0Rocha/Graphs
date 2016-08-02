@@ -14,7 +14,6 @@ void prim(Vertex graph[], Edge edges[], Vertex *initialVertex, int numVertices, 
 	printf("Minimum Spawning Tree:\n");
 	while(!isEmpty(Q)) {
 		Vertex *u = extractMin(Q);
-		printf("%d ", u->name);
 		AdjList *adj = u->adjList;
 		while (adj != NULL) {
 			Vertex *v = adj->vertex;
@@ -26,12 +25,18 @@ void prim(Vertex graph[], Edge edges[], Vertex *initialVertex, int numVertices, 
 			adj = adj->prev;
 		}
 	}
+	printPrimResults(graph, numVertices);
 }
 
 void printPrimResults(Vertex graph[], int numVertices) {
+	int totalWeight = 0;
 	for (int i = 0; i < numVertices; i++) {
 		if (i == 0) printf("\n");
-		printf("Vertex %d - ", graph[i].name);
-		printf("Key %d\n", graph[i].key);
+		if (graph[i].father)
+			printf("Vertex %d - Father %d - Key %d\n", graph[i].name, graph[i].father->name, graph[i].key);
+		else 	
+			printf("Vertex %d - Father %p - Key %d\n", graph[i].name, graph[i].father, graph[i].key);
+		totalWeight += graph[i].key;
 	}
+	printf("Total Weight: %d\n", totalWeight);
 }

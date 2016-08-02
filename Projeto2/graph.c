@@ -77,9 +77,10 @@ int findIndexByName(Vertex graph[], int name, int numVertices) {
 
 int getDistance(Edge edges[], int u, int v, int numEdges) {
 	for (int i = 0; i < numEdges; i++) {
-		if (edges[i].u == u && edges[i].v == v) return edges[i].weight; 
+		if (edges[i].u == u && edges[i].v == v) return edges[i].weight;
+		if (edges[i].u == v && edges[i].v == u) return edges[i].weight; 
 	}
-	return 0;
+	return 9999;
 }
 
 void printAdjList(Vertex *graph, int numVertices) {
