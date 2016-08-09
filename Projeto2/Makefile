@@ -1,6 +1,6 @@
 ALL:
-	gcc *.c -o mst -O3 -Wno-unused-result
+	gcc *.c -o tsp -O3 -Wno-unused-result
 clear:
-	rm mst
+	rm tsp
 run:
-	./mst -a prim -i 0 -f tests/input.txt
+	./tsp -a prim -i 0 -f tests/input.txt

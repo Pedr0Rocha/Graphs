@@ -14,6 +14,7 @@ void prim(Vertex graph[], Edge edges[], Vertex *initialVertex, int numVertices, 
 	printf("Minimum Spawning Tree:\n");
 	while(!isEmpty(Q)) {
 		Vertex *u = extractMin(Q);
+		printf("%d ", u->name);
 		AdjList *adj = u->adjList;
 		while (adj != NULL) {
 			Vertex *v = adj->vertex;
