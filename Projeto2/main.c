@@ -1,3 +1,9 @@
+/* 
+	Trabalho de Grafos - Projeto 2
+	Pedro Rocha   - RA 68740
+	Marcos Felipe - RA 71831
+*/ 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
