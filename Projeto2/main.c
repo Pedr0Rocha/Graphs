@@ -14,6 +14,7 @@
 #include "include/reader.h"
 #include "include/graph.h"
 #include "include/prim.h"
+#include "include/hrt.h"
 
 char *algorithmToRun = NULL;
 int isDirected = 0;

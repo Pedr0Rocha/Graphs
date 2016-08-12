@@ -16,9 +16,9 @@ Vertex* nearestNeightbor(AdjList *adjList) {
 	return v;
 }
 
-int notOnList(Vertex mst[], int currentIndex, Vertex *v) {
+int notOnList(Vertex **mst, int currentIndex, Vertex *v) {
 	for (int i = 0; i < currentIndex; i++) 
-		if (mst[i].name == v->name) return 0;
+		if (mst[i]->name == v->name) return 0;
 	return 1;
 }
 
