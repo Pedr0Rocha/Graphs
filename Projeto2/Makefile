@@ -3,4 +3,4 @@ ALL:
 clear:
 	rm tsp
 run:
-	./tsp -a prim -i 0 -f tests/input.txt
+	./tsp -a hrt -i 0 -f tests/input.txt

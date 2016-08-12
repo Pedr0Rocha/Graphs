@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 		printf("\n");
 	} else if (strcmp(algorithmToRun, "hrt") == 0) {
 		printf("\nHeuristic Algorithm\n");
+		hrt(graph, edges, &graph[initialVertex], VERTICES_COUNT, EDGES_COUNT);
 	} else {
 		printf("\nERROR - Incorrect algorithm parameter.\n");
 	}
